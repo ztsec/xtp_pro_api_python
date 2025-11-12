@@ -22,7 +22,7 @@ python版本api封装使用的Visual Studio 2015，如果本地安装的vs是较
 
 4.XTP Pro版本封装的python版本sdk中回调函数onDepthMarketData()的数据data跟之前的版本有区别，stk(股票)，bond(债券)，opt(期权)三个数据作为字典嵌套到data里的,具体参考quotetest.py里的示例。同理，回调函数onTickByTick()的数据data跟之前版本也不同，entrust(逐笔委托)，trade(逐笔成交)，state(逐笔状态)三个数据是作为字段嵌套到data里的，参考quotetest.py里的示例。
 
-5.XTP_PRO_API_1.0.13文件夹下存放最新的C++版本的SDK，当前python封装库分别包含行情和交易库，python封装后的接口与当前c++版本的SDK中的API所有接口都保持一致，只有方法名有所区别，python封装后的接口方法名首字母小写，而C++版本的api方法名首字母大写。
+5.XTP_PRO_API文件夹下存放最新的C++版本的SDK，当前python封装库分别包含行情和交易库，python封装后的接口与当前c++版本的SDK中的API所有接口都保持一致，只有方法名有所区别，python封装后的接口方法名首字母小写，而C++版本的api方法名首字母大写。
 
   因此所有封装后的python接口方法使用和功能都可以参见C++版本的SDK的接口方法。请在xtpx_quote_api.h、xtpx_trader_api.h两个头文件中了解各个接口的使用及功能。
 
