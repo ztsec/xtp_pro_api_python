@@ -935,6 +935,15 @@ if __name__ == '__main__':
        retGetApiLastError = api.getApiLastError()
        printFuncName('getApiLastError', retGetApiLastError)
     
+    #使用UDP接收行情时，设置接收和解析行情线程绑定的cpu集合
+    #@return 配置是否成功，true-成功，false-失败
+    #@param cpuRecvList 设置绑定的cpu集合数组
+    #@param count cpu集合数组长度
+    #@remark 此函数可不调用。若不调用，系统将自动采用配置文件中的默认CPU配置；若需调用则必须严格遵循调用时序——仅允许在执行login操作前且完成setConfigFile设置后调用，否则配置将无法生效。在绑核分配环节，api会按数组从前往后的核序号依次分配给配置文件中md、ob、tbt、idxpress、hkc这些CPU设置项（enable为OFF的不会分配）。
+    cpuRecvList = [{'cpu_no':'2'},{'cpu_no':'3'},{'cpu_no':'4'},{'cpu_no':'5'},{'cpu_no':'6'},{'cpu_no':'7'}]
+    retSetUDPThreadAffinityArray = api.setUDPThreadAffinityArray(cpuRecvList,6)
+    printFuncName('setUDPThreadAffinityArray', retSetUDPThreadAffinityArray)
+    
     #用户登录请求
     #@return 登录是否成功，“0”表示登录成功，“-1”表示连接服务器出错，此时用户可以调用GetApiLastError()来获取错误代码，“-2”表示已存在连接，不允许重复登录，如果需要重连，请先logout，“-3”表示输入有错误
     #@param ip 服务器ip地址，类似“127.0.0.1”
