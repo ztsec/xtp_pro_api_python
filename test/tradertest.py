@@ -125,8 +125,9 @@ class TestApi(TraderApi):
         print("data['extra_error_code']:",data['extra_error_code'])#外部系统拒单原因代码
         print("data['account_id']:",data['account_id'])#证券账户（股卡）
         print("data['branch_pbu']:",data['branch_pbu'])#交易所PBU代码
-        print("error['error_id']:",error['error_id'])#
-        print("error['error_msg']:",error['error_msg'])#
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #成交通知
     #@param data 成交回报的具体信息，用户可以通过data.order_xtp_id来管理订单，通过GetClientIDByXTPID() == client_id来过滤自己的订单。对于上交所，exec_id可以唯一标识一笔成交。当发现2笔成交回报拥有相同的exec_id，则可以认为此笔交易自成交了。对于深交所，exec_id是唯一的，暂时无此判断机制。report_index+market字段可以组成唯一标识表示成交回报。
@@ -179,8 +180,9 @@ class TestApi(TraderApi):
         print("data['extra_error_code']:",data['extra_error_code'])#外部系统拒单原因代码
         print("data['orig_order_local_id']:",data['orig_order_local_id'])#原始会员内部订单编号
         print("data['order_local_id']:",data['order_local_id'])#本地报单编号 OMS生成的单号，不等同于order_xtp_id，为服务器传到报盘的单号
-        print("error['error_id']:",error['error_id'])#
-        print("error['error_msg']:",error['error_msg'])#
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #请求查询报单响应
     #@param data 查询到的一个报单
@@ -231,8 +233,9 @@ class TestApi(TraderApi):
         print("data['extra_error_code']:",data['extra_error_code'])#外部系统拒单原因代码
         print("data['account_id']:",data['account_id'])#证券账户（股卡）
         print("data['branch_pbu']:",data['branch_pbu'])#交易所PBU代码
-        print("error['error_id']:",error['error_id'])#
-        print("error['error_msg']:",error['error_msg'])#
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
         
 
     #分页请求查询报单响应
@@ -324,8 +327,9 @@ class TestApi(TraderApi):
         print("data['strategy_id']:",data['strategy_id'])#算法母单编号ID，仅为算法单时有效
         print("data['exec_id']:",data['exec_id'])#成交编号，深交所唯一，上交所每笔交易唯一，当发现2笔成交回报拥有相同的exec_id，则可以认为此笔交易自成交
         print("data['account_id']:",data['account_id'])#证券账户（股卡）
-        print("error['error_id']:",error['error_id'])#错误代码
-        print("error['error_msg']:",error['error_msg'])#错误信息
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #分页请求查询成交响应
     #@param data 查询到的一个成交回报
@@ -401,8 +405,9 @@ class TestApi(TraderApi):
         print("data['margin']:",data['margin'])#义务仓占用保证金（此字段目前只有期权账户有值，其他类型账户为0）
         print("data['last_buy_cost']:",data['last_buy_cost'])#昨日买入成本
         print("data['last_profit_cost']:",data['last_profit_cost'])#昨日盈亏成本
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #请求查询用户证券账户信息响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
     #@param data 查询到的用户证券账户信息
@@ -417,7 +422,9 @@ class TestApi(TraderApi):
         print("data['market']:",data['market'])#交易市场
         print("data['account_id']:",data['account_id'])#证券账户（股卡）
         print("data['is_main_account']:",data['is_main_account'])#主股东账户标识
-        
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
 
     #请求查询资金账户响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
@@ -457,8 +464,9 @@ class TestApi(TraderApi):
         print("data['exchange_cur_risk_degree']:",data['exchange_cur_risk_degree'])#交易所实时风险度（仅限期权账户,后续服务器版本支持，目前为0）
         print("data['company_cur_risk_degree']:",data['company_cur_risk_degree'])#公司实时风险度（仅限期权账户,后续服务器版本支持，目前为0）
         print("data['currency_type']:",data['currency_type'])#货币种类
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #请求查询资金划拨订单响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
     #@param data 查询到的资金账户情况
@@ -480,8 +488,9 @@ class TestApi(TraderApi):
         print("data['currency_type']:",data['currency_type'])#货币种类
         print("fund_transfer_err_info['error_id']:",fund_transfer_err_info['error_id'])
         print("fund_transfer_err_info['error_msg']:",fund_transfer_err_info['error_msg'])
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #分页请求查询资金划拨订单响应
     #@param data 查询到的一个资金划拨订单
@@ -506,8 +515,9 @@ class TestApi(TraderApi):
         print("data['currency_type']:",data['currency_type'])#货币种类
         print("fund_transfer_err_info['error_id']:",fund_transfer_err_info['error_id'])
         print("fund_transfer_err_info['error_msg']:",fund_transfer_err_info['error_msg'])
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #资金划拨通知
     #@param data 资金划拨通知的具体信息，用户可以通过data.serial_id来管理订单，通过GetClientIDByXTPID() == client_id来过滤自己的订单。
@@ -524,8 +534,9 @@ class TestApi(TraderApi):
         print("data['transfer_time']:",data['transfer_time'])#操作时间
         print("data['site']:",data['site'])#转入或转出的目标服务器对应的节点类型
         print("data['currency_type']:",data['currency_type'])#货币种类 0-人民币 1-美元 2-港币
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #资金划拨订单未知状态通知
     #@param serial_id 未知状态资金划拨订单的serial id
@@ -549,8 +560,9 @@ class TestApi(TraderApi):
         print("data['query_type']:",data['query_type'])#查询类型 0-查询金证主柜台可转资金 1-查询一账号两中心设置时，对方节点的资金 2-查询一账号两中心设置时，对方节点的融券卖余额资金 3-查询一账号两中心设置时，对方节点的授信额度
         print("data['query_site']:",data['query_site'])#对应的交易市场 0-主柜台 2-上海节点 4-深圳节点 8-北京节点 16-香港节点 256-未知节点
         print("data['currency_type']:",data['currency_type'])#货币种类 0-人民币 1-美元 2-港币
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #请求查询ETF清单文件的响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
     #@param data 查询到的ETF清单文件情况
@@ -573,8 +585,9 @@ class TestApi(TraderApi):
         print("data['cash_component']:",data['cash_component'])#T-X日现金差额
         print("data['net_value']:",data['net_value'])#基金单位净值
         print("data['total_amount']:",data['total_amount'])#最小申赎单位净值总金额=net_value*unit
-        print("error['error_id']:",error['error_id'])#
-        print("error['error_msg']:",error['error_msg'])#
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #请求查询ETF股票篮的响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
     #@param data 查询到的ETF合约的相关成分股信息
@@ -599,8 +612,9 @@ class TestApi(TraderApi):
         print("data['redemption_discount_ratio']:",data['redemption_discount_ratio'])#赎回溢价比例
         print("data['creation_amount']:",data['creation_amount'])#申购时，成分股替代标识为必须现金替代时候的总金额
         print("data['redemption_amount']:",data['redemption_amount'])#赎回时，成分股替代标识为必须现金替代时候的总金额
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #请求查询今日新股申购信息列表的响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
     #@param data 查询到的今日新股申购的一只股票信息
@@ -619,8 +633,10 @@ class TestApi(TraderApi):
         print("data['price']:",data['price'])#申购价格
         print("data['unit']:",data['unit'])#申购单元
         print("data['qty_upper_limit']:",data['qty_upper_limit'])#最大允许申购数量
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        print("data['is_noprofit']:",data['is_noprofit'])#<是否尚未盈利(仅适用创业板股票，创新企业股票及存托凭证)
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #请求查询用户新股申购额度信息的响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
     #@param data 查询到的用户某个市场的今日新股申购额度信息
@@ -635,8 +651,9 @@ class TestApi(TraderApi):
         print("data['market']:",data['market'])#交易市场
         print("data['quantity']:",data['quantity'])#可申购额度
         print("data['tech_quantity']:",data['tech_quantity'])#上海科创板额度       
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
 	#请求查询今日可转债申购信息列表的响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
 	#@param ipo_info 查询到的今日可转债申购的一只可转债信息
@@ -655,8 +672,9 @@ class TestApi(TraderApi):
         print("data['price']:",data['price'])#申购价格
         print("data['unit']:",data['unit'])#申购单元
         print("data['qty_upper_limit']:",data['qty_upper_limit'])#最大允许申购数量
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #请求查询用户可转债转股信息的响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
 	#@param swap_stock_info 查询到某条可转债转股信息
@@ -676,13 +694,14 @@ class TestApi(TraderApi):
         print("data['qty_max']:",data["qty_max"])#最大下单量（张）
         print("data['swap_price']:",data["swap_price"])#转股价格
         print("data['swap_flag']:",data["swap_flag"])#是否处于转股期；0: 不可转股；1：可转股；
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
 
 if __name__ == '__main__':
 
-    ip = '122.112.139.0'
+    p = '122.112.139.0'
     port = 6202
     user = 'username'
     password = 'password'
@@ -736,7 +755,9 @@ if __name__ == '__main__':
     printFuncName('login', session_id)   
     if session_id == 0 :
        retGetApiLastError = api.getApiLastError()
-       printFuncName('getApiLastError', retGetApiLastError)   
+       printFuncName('getApiLastError', retGetApiLastError) 
+
+    
     
 
     #获取当前交易日
@@ -1069,8 +1090,9 @@ if __name__ == '__main__':
     retQueryIPOInfoList = api.queryIPOInfoList(session_id, reqid)
     printFuncName('queryIPOInfoList',retQueryIPOInfoList)
     sleep(1)
-  
-    #请求查询用户新股申购额度信息
+    
+
+     #请求查询用户新股申购额度信息
     #@return 查询是否成功，“0”表示成功，非“0”表示出错，此时用户可以调用GetApiLastError()来获取错误代码
     #@param session_id 资金账户对应的session_id,登录时得到
     #@param reqid 用于用户定位查询响应的ID，由用户自定义
@@ -1078,7 +1100,7 @@ if __name__ == '__main__':
     retQueryIPOQuotaInfo = api.queryIPOQuotaInfo(session_id, reqid)
     printFuncName('queryIPOQuotaInfo',retQueryIPOQuotaInfo)
     sleep(1)
-  
+
     #请求查询今日可转债申购信息列表
 	#@return 查询是否成功，“0”表示成功，非“0”表示出错，此时用户可以调用GetApiLastError()来获取错误代码
 	#@param session_id 资金账户对应的session_id,登录时得到
@@ -1090,6 +1112,7 @@ if __name__ == '__main__':
         retGetApiLastError = api.getApiLastError()
         printFuncName('getApiLastError', retGetApiLastError)   
     sleep(1)
+   
   
     #请求查询可转债转股的基本信息
 	#@return 查询是否发送成功，“0”表示发送成功，非“0”表示发送出错，此时用户可以调用GetApiLastError()来获取错误代码

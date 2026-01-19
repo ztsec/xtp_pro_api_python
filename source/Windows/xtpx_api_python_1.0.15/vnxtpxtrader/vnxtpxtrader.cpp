@@ -2741,6 +2741,7 @@ void TraderApi::processQueryIPOInfoList(Task *task)
 		data["price"] = task_data->price;
 		data["unit"] = task_data->unit;
 		data["qty_upper_limit"] = task_data->qty_upper_limit;
+		data["is_noprofit"] = task_data->is_noprofit;
 		delete task->task_data;
 	}
 
