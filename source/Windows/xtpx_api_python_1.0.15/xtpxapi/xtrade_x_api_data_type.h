@@ -147,9 +147,9 @@ namespace XTPX {
 		constexpr uint32_t XTP_PRICE_BEST5_OR_CANCEL = 4;        
 		///全部成交或撤销,市价单-深 / 沪期权 / 深期权
 		constexpr uint32_t XTP_PRICE_ALL_OR_CANCEL = 5;        
-		///本方最优，市价单-深 / 深期权 / 沪科创板
+		///本方最优，市价单-沪深 / 深期权
 		constexpr uint32_t XTP_PRICE_FORWARD_BEST = 6; 
-		///对方最优剩余转限价，市价单-深 / 沪期权 / 深期权 / 沪科创板       
+		///对手方最优，市价单-沪深 / 深期权   
 		constexpr uint32_t XTP_PRICE_REVERSE_BEST_LIMIT = 7;        
 		///期权限价申报FOK
 		constexpr uint32_t XTP_PRICE_LIMIT_OR_CANCEL = 8;        

@@ -152,6 +152,8 @@ namespace XTPX {
 		constexpr uint32_t XTP_SECURITY_STOCK_OPTION = 29;
 		/// ETF期权
 		constexpr uint32_t XTP_SECURITY_ETF_OPTION = 30;
+		/// REITs基金
+		constexpr uint32_t XTP_SECURITY_REITS = 38;
 		/// 配股
 		constexpr uint32_t XTP_SECURITY_ALLOTMENT = 100;
 		/// 上交所申赎型货币基金

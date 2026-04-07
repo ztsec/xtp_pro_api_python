@@ -11,6 +11,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include <stddef.h>
 #include "xtpx_api_data_type.h"
 #include "xtpx_api_struct_common.h"
 #include "xquote_x_api_rebuild_tbt_struct.h"
