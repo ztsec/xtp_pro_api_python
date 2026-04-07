@@ -701,7 +701,7 @@ class TestApi(TraderApi):
 
 if __name__ == '__main__':
 
-    p = '122.112.139.0'
+    ip = '122.112.139.0'
     port = 6202
     user = 'username'
     password = 'password'
