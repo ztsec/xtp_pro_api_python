@@ -1,9 +1,7 @@
 //说明部分
 
 //API
-#include <cstddef>
 #include "xtpx_quote_api.h"
-
 
 //系统
 //#ifdef WIN32

@@ -2441,9 +2441,10 @@ bool QuoteApi::setUDPThreadAffinityArray(boost::python::list cpu_no_array, int c
 		dict req = (dict)cpu_no_array[i];
 		getInt(req, "cpu_no", &cpuNoList[i]);
 	}
-	this->api->SetUDPThreadAffinityArray(cpuNoList, count);
+	bool ret = this->api->SetUDPThreadAffinityArray(cpuNoList, count);
 	delete[] cpuNoList;
 	cpuNoList = NULL;
+	return ret;
 }
 
 int QuoteApi::subscribeMarketData(boost::python::list tickerList,int count, int exchange)
