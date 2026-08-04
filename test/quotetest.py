@@ -186,8 +186,9 @@ class TestApi(QuoteApi):
         printFuncName('onSubOrderBook', data, error, last)
         print("data['exchange_id']:",data['exchange_id'])#交易所代码
         print("data['ticker']:",data['ticker'])#合约代码（不包含交易所信息）例如"600000"
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #退订行情订单簿应答，包括股票、指数和期权
     #@param data 详细的合约取消订阅情况
@@ -199,8 +200,9 @@ class TestApi(QuoteApi):
         printFuncName('onUnSubOrderBook', data, error, last)
         print("data['exchange_id']:",data['exchange_id'])#交易所代码
         print("data['ticker']:",data['ticker'])#合约代码（不包含交易所信息）例如"600000"
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #行情订单簿通知，包括股票、指数和期权
     #@param data 行情订单簿数据，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
@@ -229,8 +231,9 @@ class TestApi(QuoteApi):
         printFuncName('onSubTickByTick', data, error, last)
         print("data['exchange_id']:",data['exchange_id'])#交易所代码
         print("data['ticker']:",data['ticker'])#合约代码
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #退订逐笔行情应答，包括股票、指数和期权
     #@param data 详细的合约取消订阅情况
@@ -242,8 +245,9 @@ class TestApi(QuoteApi):
         printFuncName('onUnSubTickByTick', data, error, last)
         print("data['exchange_id']:",data['exchange_id'])#交易所代码
         print("data['ticker']:",data['ticker'])#合约代码
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #逐笔行情通知，包括股票、指数和期权
     #@param data 逐笔行情数据，包括逐笔委托和逐笔成交，此为共用结构体，需要根据type来区分是逐笔委托还是逐笔成交，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线
@@ -263,6 +267,7 @@ class TestApi(QuoteApi):
             print("entrust['side']:",data['entrust']['side'])#'1':买; '2':卖; 'G':借入; 'F':出借
             print("entrust['ord_type']:",data['entrust']['ord_type'])#订单类别: '1': 市价; '2': 限价; 'U': 本方最优
             print("entrust['order_no']:",data['entrust']['order_no'])#SH: 原始订单号,SZ: 无意义
+            print("entrust['traded_qty']:",data['entrust']['traded_qty'])#SH: 已成交的委托数量,SZ: 无意义
         elif data['type'] == 2 :
             print("trade['channel_no']:",data['trade']['channel_no'])#频道代码
             print("trade['seq']:",data['trade']['seq'])#SH: 成交序号(成交单独编号, 同一channel_no内连续,从1开始连续);SZ: 成交序号(委托成交统一编号, 同一channel_no内连续)
@@ -285,8 +290,9 @@ class TestApi(QuoteApi):
     def onSubscribeAllMarketData(self,exchange_id, error):
         """"""
         printFuncName('onSubscribeAllMarketData', exchange_id,error)
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #退订全市场的股票行情应答
     #@param exchange_id 表示当前全订阅的市场，如果为XTP_EXCHANGE_UNKNOWN(3)，表示沪深全市场，XTP_EXCHANGE_SH(1)表示为上海全市场，XTP_EXCHANGE_SZ(2)表示为深圳全市场
@@ -295,8 +301,9 @@ class TestApi(QuoteApi):
     def onUnSubscribeAllMarketData(self, exchange_id,error):
         """"""
         printFuncName('onUnSubscribeAllMarketData',exchange_id,error)
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #订阅全市场的股票行情订单簿应答
     #@param exchange_id 表示当前全订阅的市场，如果为XTP_EXCHANGE_UNKNOWN(3)，表示沪深全市场，XTP_EXCHANGE_SH(1)表示为上海全市场，XTP_EXCHANGE_SZ(2)表示为深圳全市场
@@ -305,8 +312,9 @@ class TestApi(QuoteApi):
     def onSubscribeAllOrderBook(self, exchange_id,error):
         """"""
         printFuncName('onSubscribeAllOrderBook', exchange_id,error)
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #退订全市场的股票行情订单簿应答
     #@param exchange_id 表示当前全订阅的市场，如果为XTP_EXCHANGE_UNKNOWN(3)，表示沪深全市场，XTP_EXCHANGE_SH(1)表示为上海全市场，XTP_EXCHANGE_SZ(2)表示为深圳全市场
@@ -315,8 +323,9 @@ class TestApi(QuoteApi):
     def onUnSubscribeAllOrderBook(self, exchange_id,error):
         """"""
         printFuncName('onUnSubscribeAllOrderBook', exchange_id,error)
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #订阅全市场的股票逐笔行情应答
     #@param exchange_id 表示当前全订阅的市场，如果为XTP_EXCHANGE_UNKNOWN(3)，表示沪深全市场，XTP_EXCHANGE_SH(1)表示为上海全市场，XTP_EXCHANGE_SZ(2)表示为深圳全市场
@@ -325,8 +334,9 @@ class TestApi(QuoteApi):
     def onSubscribeAllTickByTick(self, exchange_id,error):
         """"""
         printFuncName('onSubscribeAllTickByTick', exchange_id,error)
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #退订全市场的股票逐笔行情应答
     #@param exchange_id 表示当前全订阅的市场，如果为XTP_EXCHANGE_UNKNOWN(3)，表示沪深全市场，XTP_EXCHANGE_SH(1)表示为上海全市场，XTP_EXCHANGE_SZ(2)表示为深圳全市场
@@ -335,8 +345,9 @@ class TestApi(QuoteApi):
     def onUnSubscribeAllTickByTick(self,exchange_id, error):
         """"""
         printFuncName('onUnSubscribeAllTickByTick',exchange_id, error)
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #查询可交易合约的应答
     #@param data 可交易合约信息
@@ -369,8 +380,9 @@ class TestApi(QuoteApi):
         print("data['exchange_id']:",data['exchange_id'])#交易所代码
         print("data['ticker']:",data['ticker'])#合约代码
         print("data['last_price']:",data['last_price'])#最新价
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #订阅全市场的期权行情应答
     #@param exchange_id 表示当前全订阅的市场，如果为XTP_EXCHANGE_UNKNOWN(3)，表示沪深全市场，XTP_EXCHANGE_SH(1)表示为上海全市场，XTP_EXCHANGE_SZ(2)表示为深圳全市场
@@ -379,8 +391,9 @@ class TestApi(QuoteApi):
     def onSubscribeAllOptionMarketData(self,exchange_id, error):
         """"""
         printFuncName('onSubscribeAllOptionMarketData',exchange_id, error)
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #退订全市场的期权行情应答
     #@param exchange_id 表示当前全订阅的市场，如果为XTP_EXCHANGE_UNKNOWN(3)，表示沪深全市场，XTP_EXCHANGE_SH(1)表示为上海全市场，XTP_EXCHANGE_SZ(2)表示为深圳全市场
@@ -389,8 +402,9 @@ class TestApi(QuoteApi):
     def onUnSubscribeAllOptionMarketData(self,exchange_id, error):
         """"""
         printFuncName('onUnSubscribeAllMarketData', exchange_id,error)
-        print("error['error_id']:",error['error_id'])
-        print("error['error_msg']:",error['error_msg'])
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
 
     #查询合约完整静态信息的应答
     #@param ticker_info 合约完整静态信息
@@ -781,6 +795,7 @@ class TestApi(QuoteApi):
             print("entrust['side']:",data['entrust']['side'])#'1':买; '2':卖; 'G':借入; 'F':出借
             print("entrust['ord_type']:",data['entrust']['ord_type'])#订单类别: '1': 市价; '2': 限价; 'U': 本方最优
             print("entrust['order_no']:",data['entrust']['order_no'])#SH: 原始订单号,SZ: 无意义
+            print("entrust['traded_qty']:", data['entrust']['traded_qty'])#SH: 已成交的委托数量,SZ: 无意义
         elif data['type'] == 2 :
             print("trade['channel_no']:",data['trade']['channel_no'])#频道代码
             print("trade['seq']:",data['trade']['seq'])#SH: 成交序号(成交单独编号, 同一channel_no内连续,从1开始连续);SZ: 成交序号(委托成交统一编号, 同一channel_no内连续)
@@ -897,7 +912,36 @@ class TestApi(QuoteApi):
             print("bond['num_ask_orders']",data['bond']['num_ask_orders'])#卖方委托价位数(SH)
             print("bond['instrument_status']",data['bond']['instrument_status'])#时段(SHL2)，L1快照数据没有此字段，具体字段说明参阅《上海新债券Level2行情说明.doc》文档
         
+    
+    #查询港股通完整静态信息的应答
+    #@param data 港股通静态信息
+    #@param error 查询港股通完整静态信息时发生错误时返回的错误信息，error，error.error_id为0时，表明没有错误
+    #@param is_last 是否此次查询港股通完整静态信息的最后一个应答，当为最后一个的时候为true，如果为false，表示还有其他后续消息响应
+    def onQueryAllHKCInfo(self, data, error, is_last):
+        """"""
+        printFuncName('onQueryAllHKCInfo', data, error, is_last)
+        print("data['ticker']", data['ticker'])#证券代码
+        print("data['ticker_name']", data['ticker_name'])#证券名称
+        print("data['exchange_id']", data['exchange_id'])#沪市：1，深市：2，新三板：3，港交所：4，不存在的交易所类型：5
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
         
+    
+    #查询指数通完整静态信息的应答
+    #@param data 指数通完整静态信息
+    #@param error 查询指数通完整静态信息时发生错误时返回的错误信息，当error为空，或者error.error_id为0时，表明没有错误
+    #@param is_last 是否此次查询指数通完整静态信息的最后一个应答，当为最后一个的时候为true，如果为false，表示还有其他后续消息响应
+    def onQueryAllIndexPressInfo(self, data, error, is_last):
+        """"""
+        printFuncName('onQueryAllIndexPressInfo', data, error, is_last)
+        print("data['ticker']", data['ticker'])#证券代码
+        print("data['ticker_name']", data['ticker_name'])#证券名称
+        print("data['market_code']", data['market_code'])#市场代码, 全球：0，上交所：1，深交所：2，沪深：3，香港：4，亚太：5，债券市场：6，其它：9，未知：100
+        if('error_id' in error):
+            print("error['error_id']:",error['error_id'])
+            print("error['error_msg']:",error['error_msg'])
+    
 
 
 
@@ -922,7 +966,7 @@ if __name__ == '__main__':
     #设置心跳检测时间间隔，单位为秒
     #@param interval 心跳检测时间间隔，单位为秒
     #@remark 此函数必须在Login之前调用
-    api.setHeartBeatInterval(15)
+    api.setHeartBeatInterval(30)
     
     filename = "D:/MyProject/xtpx_api_python_1.0.13_a.10/etc/example_config/quote_config.ini"
     #设置行情接收的配置文件
@@ -984,7 +1028,7 @@ if __name__ == '__main__':
     printFuncName('subscribeMarketData', retSubscribeMarketData)
     
     
-    sleep(2000)
+    sleep(2)
 
     #退订行情，包括股票、指数和期权。
     #@return 取消订阅接口调用是否成功，“0”表示接口调用成功，非“0”表示接口调用出错
@@ -1103,8 +1147,9 @@ if __name__ == '__main__':
 
     #获取所有合约的最新价格信息
     #@return 查询是否成功，“0”表示查询成功，非“0”表示查询不成功
+    #@param exchange_id 表示当前全查询的市场，必须指定，仅支持单市场查询
     sleep(1)
-    retQueryAllTickersPriceInfo = api.queryAllTickersPriceInfo()
+    retQueryAllTickersPriceInfo = api.queryAllTickersPriceInfo(1)
     printFuncName('queryAllTickersPriceInfo', retQueryAllTickersPriceInfo)
 
     # 1.1.8更新后新增的测试函数 141-158
@@ -1200,9 +1245,21 @@ if __name__ == '__main__':
         getApiLastError = api.getApiLastError()
         printFuncName("getApiLastError", getApiLastError)
     
+    sleep(1)
+    
+    #获取港股通的静态信息
+    #@return 发送查询请求是否成功，“0”表示发送查询请求成功，非“0”表示发送查询请求不成功
+    retQueryAllHKCInfo = api.queryAllHKCInfo()
+    
+    sleep(1)
+    
+    #获取指数通的静态信息
+    #@return 发送查询请求是否成功，“0”表示发送查询请求成功，非“0”表示发送查询请求不成功
+    retQueryAllIndexPressInfo = api.queryAllIndexPressInfo()
+    
     
     #sleep为了删除接口对象前将回调数据输出，不sleep直接删除回调对象会自动析构，无法返回回调的数据
-    sleep(20)
+    sleep(200)
     
     #登出请求
     #@return 登出是否成功，“0”表示登出成功，非“0”表示登出出错，此时用户可以调用GetApiLastError()来获取错误代码
